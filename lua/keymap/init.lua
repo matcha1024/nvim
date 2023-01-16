@@ -1,5 +1,5 @@
 local keymap = require('core.keymap')
-local nmap, imap, cmap, xmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap
+local nmap, imap, tmap, vmap, xmap = keymap.nmap, keymap.imap, keymap.tmap, keymap.vmap, keymap.xmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
@@ -11,48 +11,42 @@ vim.g.mapleader = ' '
 nmap({ ' ', '', opts(noremap) })
 xmap({ ' ', '', opts(noremap) })
 
--- usage example
 nmap({
-  -- noremal remap
-  -- close buffer
-  { '<C-x>k', cmd('bdelete'), opts(noremap, silent) },
-  -- save
-  { '<C-s>', cmd('write'), opts(noremap) },
-  -- yank
-  { 'Y', 'y$', opts(noremap) },
-  -- buffer jump
-  { ']b', cmd('bn'), opts(noremap) },
-  { '[b', cmd('bp'), opts(noremap) },
-  -- remove trailing white space
-  { '<Leader>t', cmd('TrimTrailingWhitespace'), opts(noremap) },
-  -- window jump
-  { '<C-h>', '<C-w>h', opts(noremap) },
-  { '<C-l>', '<C-w>l', opts(noremap) },
-  { '<C-j>', '<C-w>j', opts(noremap) },
-  { '<C-k>', '<C-w>k', opts(noremap) },
+  -- general
+  { '<C-j>', '<ESC>' },
+  { '[p', cmd('pu!') },
+  { ']p', cmd('pu') },
+  { '<leader>l', cmd('noh') },
+  -- bufferline
+  { ';t', cmd('tabnew') },
+  { ';w', cmd('bdelete!') },
+  { '<', cmd('BufferLineCyclePrev') },
+  { '>', cmd('BufferLineCycleNext') },
+  -- sidebarnvim
+  {
+    ';s',
+    "<CMD> if stridx(@%, 'SidebarNvim') == -1 <CR> SidebarNvimFocus <CR> else <CR> SidebarNvimClose <CR> endif <CR>",
+  },
+  -- lspsaga
+  { '<leader>ca', cmd('Lspsaga code_action') },
+  { 'gr', cmd('Lspsaga rename') },
+  { 'gd', cmd('Lspsaga peek_definition') },
+  { 'K', cmd('Lspsaga hover_doc') },
+  -- telescope
+  { ';f', cmd('Telescope find_files') },
+  { ';r', cmd('Telescope live_grep') },
+  -- hop
+  { 'hop', cmd('HopWord') },
 })
 
-imap({
-  -- insert mode
-  { '<C-h>', '<Bs>', opts(noremap) },
-  { '<C-e>', '<End>', opts(noremap) },
-})
+-- general
+imap({ '<C-j>', '<ESC>' })
+vmap({ '<C-j>', '<ESC>' })
 
--- commandline remap
-cmap({ '<C-b>', '<Left>', opts(noremap) })
--- usage of plugins
-nmap({
-  -- plugin manager: Lazy.nvim
-  { '<Leader>pu', cmd('Lazy update'), opts(noremap, silent) },
-  { '<Leader>pi', cmd('Lazy install'), opts(noremap, silent) },
-  -- dashboard
-  { '<Leader>n', cmd('DashboardNewFile'), opts(noremap, silent) },
-  { '<Leader>ss', cmd('SessionSave'), opts(noremap, silent) },
-  { '<Leader>sl', cmd('SessionLoad'), opts(noremap, silent) },
-  -- nvimtree
-  { '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) },
-  -- Telescope
-  { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
-  { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
-  { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
+tmap({
+  -- toggleterm
+  { '<C-w>h', cmd('wincmd h') },
+  { '<C-w>j', cmd('wincmd j') },
+  { '<C-w>k', cmd('wincmd k') },
+  { '<C-w>l', cmd('wincmd l') },
 })

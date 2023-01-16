@@ -5,7 +5,6 @@ opt.termguicolors = true
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
-opt.clipboard = 'unnamedplus'
 opt.wildignorecase = true
 opt.swapfile = false
 opt.directory = cache_dir .. 'swap/'
@@ -51,9 +50,8 @@ opt.undofile = true
 opt.smarttab = true
 opt.expandtab = true
 opt.autoindent = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.diffopt:append('linematch:50')
+opt.tabstop = 4
+opt.shiftwidth = 4
 
 -- wrap
 opt.linebreak = true
@@ -69,7 +67,6 @@ opt.signcolumn = 'yes'
 opt.spelloptions = 'camel'
 
 opt.textwidth = 100
-opt.colorcolumn = '100'
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
     name = 'macOS-clipboard',
