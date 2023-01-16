@@ -22,6 +22,7 @@ opt.redrawtime = 1500
 opt.ignorecase = true
 opt.smartcase = true
 opt.infercase = true
+opt.mouse = 'nv'
 
 if vim.fn.executable('rg') == 1 then
   opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
