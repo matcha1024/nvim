@@ -43,7 +43,7 @@ opt.showcmd = false
 opt.cmdheight = 0
 opt.laststatus = 3
 opt.list = true
-opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
+-- opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
 opt.pumblend = 10
 opt.winblend = 10
 opt.undofile = true
@@ -53,12 +53,6 @@ opt.expandtab = true
 opt.autoindent = true
 opt.tabstop = 4
 opt.shiftwidth = 4
-
--- wrap
-opt.linebreak = true
-opt.whichwrap = 'h,l,<,>,[,],~'
-opt.breakindentopt = 'shift:2,min:20'
-opt.showbreak = '↳ '
 
 opt.foldlevelstart = 99
 opt.foldmethod = 'marker'
